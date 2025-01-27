@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/matule_me</item>
+        <item name="postSplashScreenTheme">@style/Theme.MAD_WSR_2025</item>
+    </style>
+</resources>
