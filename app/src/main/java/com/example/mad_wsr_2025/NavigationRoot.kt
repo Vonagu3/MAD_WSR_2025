@@ -38,11 +38,12 @@ private fun NavGraphBuilder.onboardingGraph(navController: NavHostController) {
             )
         }
         composable<OnboardingIntro> {
-            OnboardingScreen(
-                content = { page ->
-                    OnboardingStep(page)
-                }
-            )
+            SupabaseTestScreenRoot()
+//            OnboardingScreen(
+//                content = { page ->
+//                    OnboardingStep(page)
+//                }
+//            )
         }
     }
 }

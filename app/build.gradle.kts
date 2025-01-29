@@ -62,6 +62,11 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.compose.hilt.navigation)
 
+    implementation(libs.bundles.ktor)
+
+    implementation(platform(libs.bom))
+    implementation(libs.postgrest.kt)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
