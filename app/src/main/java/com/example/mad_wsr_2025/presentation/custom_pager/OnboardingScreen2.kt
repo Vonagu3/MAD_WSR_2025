@@ -9,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,15 +28,20 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.input.pointer.PointerInputScope
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mad_wsr_2025.R
 import com.example.mad_wsr_2025.ui.theme.Accent
 import com.example.mad_wsr_2025.ui.theme.Disable
+import com.example.sneakershopwsr.onboard.presentation.pages.OnboardStartTheJourney
+import com.example.sneakershopwsr.onboard.presentation.pages.OnboardStartTheJourney2
+import com.example.sneakershopwsr.onboard.presentation.pages.OnboardStartTheJourney3
 
 @Composable
 fun OnboardingScreen2(
     modifier: Modifier = Modifier,
+    viewModel: OnboardingScreen2ViewModel = hiltViewModel()
 ) {
-    var state by remember { mutableStateOf(PagerState(0)) }
+//    var state by remember { mutableStateOf(PagerState(0)) }
     val buttonText = listOf("Начать", "Далее", "Далее")
     Box(
         modifier = modifier
@@ -43,14 +49,16 @@ fun OnboardingScreen2(
             .pointerInput(Unit) {
                 detectSwipe(
                     onSwipeLeft = {
-                        if (state.step < 2) {
-                            state = state.copy(step = state.step + 1)
-                        }
+                        viewModel.onLeftSwipe()
+//                        if (state.step < 2) {
+//                            state = state.copy(step = state.step + 1)
+//                        }
                     },
                     onSwipeRight = {
-                        if (state.step > 0) {
-                            state = state.copy(step = state.step - 1)
-                        }
+                        viewModel.onRightSwipe()
+//                        if (state.step > 0) {
+//                            state = state.copy(step = state.step - 1)
+//                        }
                     }
                 )
             }
@@ -62,35 +70,42 @@ fun OnboardingScreen2(
     ) {
 
         AnimatedContent(
-            targetState = state,
+            targetState = viewModel.targetState,
             label = "",
             transitionSpec = {
                 fadeIn(animationSpec = tween(300, 150)) togetherWith fadeOut(animationSpec = tween(300, 150))
             }
         ) { state ->
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-                painter = when (state.step) {
-                    0 -> painterResource(R.drawable.onboarding_1)
-                    1 -> painterResource(R.drawable.onboarding_2)
-                    2 -> painterResource(R.drawable.onboarding_3)
-                    else -> painterResource(R.drawable.onboarding_3)
-                },
-                contentDescription = null
-            )
-
+            Column {
+                when(state.toInt()) {
+                    0 -> OnboardStartTheJourney()
+                    1 -> OnboardStartTheJourney2()
+                    2 -> OnboardStartTheJourney3()
+                }
+//                Image(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .aspectRatio(1f),
+//                    painter = when (state.step) {
+//                        0 -> painterResource(R.drawable.onboarding_1)
+//                        1 -> painterResource(R.drawable.onboarding_2)
+//                        2 -> painterResource(R.drawable.onboarding_3)
+//                        else -> painterResource(R.drawable.onboarding_3)
+//                    },
+//                    contentDescription = null
+//                )
+            }
         }
         Button(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth(fraction = 0.8f),
             onClick = {
-                state = state.copy(step = state.step + 1)
+//                state = state.copy(step = state.step + 1)
+                viewModel.onRightSwipe()
             }
         ) {
-            Text(text = buttonText[state.step % buttonText.size])
+            Text(text = "Далее")
         }
     }
 }
