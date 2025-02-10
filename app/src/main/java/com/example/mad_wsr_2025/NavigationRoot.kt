@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.mad_wsr_2025.presentation.custom_pager.OnboardingScreen2
+import com.example.mad_wsr_2025.presentation.otp.OtpScreen
+import com.example.mad_wsr_2025.presentation.swipeable_item.ContactsScreen
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -38,12 +41,15 @@ private fun NavGraphBuilder.onboardingGraph(navController: NavHostController) {
             )
         }
         composable<OnboardingIntro> {
-            SupabaseTestScreenRoot()
+//            SupabaseTestScreenRoot()
 //            OnboardingScreen(
 //                content = { page ->
 //                    OnboardingStep(page)
 //                }
 //            )
+            OnboardingScreen2()
+//            ContactsScreen()
+//            OtpScreen()
         }
     }
 }
