@@ -23,7 +23,8 @@ class SupabaseTestViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getCustomers()
+//            getCustomers()
+            getProducts()
         }
 //        repository.getCustomers().onEach { customers ->
 //            state = state.copy(
@@ -41,6 +42,10 @@ class SupabaseTestViewModel @Inject constructor(
 
     private suspend fun getCustomers() {
         state = state.copy(customers = repository.getCustomers())
+    }
+
+    private suspend fun getProducts() {
+        state = state.copy(products = repository.getProduct())
     }
 
     fun onAction(action: SupabaseTestAction) {

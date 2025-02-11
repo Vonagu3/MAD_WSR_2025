@@ -52,7 +52,7 @@ fun SupabaseTestScreen(
                 Text("Добавить")
             }
         }
-        items(state.customers) { customer ->
+        items(state.products) { customer ->
             Text(customer.name)
         }
     }
