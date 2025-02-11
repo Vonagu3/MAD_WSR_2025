@@ -49,7 +49,7 @@ private fun NavGraphBuilder.onboardingGraph(navController: NavHostController) {
 //                }
 //            )
 //            OnboardingScreen2()
-//            ContactsScreen()
+            ContactsScreen()
 //            OtpScreen()
 //            OtpScreen2()
         }

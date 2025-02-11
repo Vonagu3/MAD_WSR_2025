@@ -64,12 +64,10 @@ fun SwipeableItemWithActions(
         ) {
             actions()
         }
-        Surface (
+        Surface(
             modifier = Modifier
                 .fillMaxSize()
-//                .graphicsLayer {
-//                    translationX = offset.value
-//                }
+//                .graphicsLayer { translationX = offset.value }
                 .offset { IntOffset(offset.value.roundToInt(), 0) }
                 .pointerInput(true) {
                     detectHorizontalDragGestures(
