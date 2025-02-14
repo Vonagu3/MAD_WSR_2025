@@ -45,7 +45,7 @@ class SupabaseTestViewModel @Inject constructor(
     }
 
     private suspend fun getProducts() {
-        state = state.copy(products = repository.getProduct())
+        state = state.copy(products = repository.getProductsInfo())//repository.getProduct())
     }
 
     fun onAction(action: SupabaseTestAction) {

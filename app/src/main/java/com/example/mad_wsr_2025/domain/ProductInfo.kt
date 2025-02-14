@@ -5,6 +5,6 @@ data class ProductInfo(
     val name: String,
     val price: Float,
     val description: String?,
-    val images: List<String>,
+//    val images: List<String>,
     val categoryId: Int,
 )

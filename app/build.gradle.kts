@@ -67,6 +67,11 @@ dependencies {
     implementation(platform(libs.bom))
     implementation(libs.postgrest.kt)
 
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

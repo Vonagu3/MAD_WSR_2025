@@ -6,11 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.mad_wsr_2025.presentation.custom_pager.OnboardingScreen2
-import com.example.mad_wsr_2025.presentation.login.LoginScreen
-import com.example.mad_wsr_2025.presentation.otp.OtpScreen
-import com.example.mad_wsr_2025.presentation.otp.OtpScreen2
-import com.example.mad_wsr_2025.presentation.swipeable_item.ContactsScreen
+import androidx.navigation.toRoute
+import com.example.mad_wsr_2025.presentation.TestCoil
+import com.example.mad_wsr_2025.presentation.forgot_password.ForgotPassword
+import com.example.mad_wsr_2025.presentation.otp.Otp
+import com.example.mad_wsr_2025.presentation.otp.OtpRoot
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -53,7 +53,18 @@ private fun NavGraphBuilder.onboardingGraph(navController: NavHostController) {
 //            ContactsScreen()
 //            OtpScreen()
 //            OtpScreen2()
-            LoginScreen()
+            ForgotPassword(
+                onNextScreen = { email ->
+                    navController.navigate(OTP(
+                        email = email
+                    ))
+                }
+            )
+//            TestCoil()
+        }
+
+        composable<OTP> {
+            OtpRoot()
         }
     }
 }
@@ -76,6 +87,11 @@ object OnboardingSplashScreen
 
 @Serializable
 object OnboardingIntro
+
+@Serializable
+data class OTP(
+    val email: String
+)
 
 @Serializable
 object MainScreenGraph

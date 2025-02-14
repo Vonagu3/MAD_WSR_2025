@@ -9,7 +9,7 @@ data class ProductInfoSerializable(
     val name: String,
     val price: Float,
     val description: String?,
-    val images: List<String>,
+//    val images: List<String>,
     @SerialName("category_id")
     val categoryId: Int,
 )

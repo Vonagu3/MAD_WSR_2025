@@ -1,4 +1,4 @@
-package com.example.mad_wsr_2025.presentation.login
+package com.example.mad_wsr_2025.presentation.forgot_password
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,22 +11,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginScreenViewModel @Inject constructor(
+class ForgotPasswordViewModel @Inject constructor(
     private val repository: SupabaseRepository
-): ViewModel() {
+) : ViewModel() {
 
-    var state by mutableStateOf(LoginState())
+    var state by mutableStateOf(ForgotPasswordState())
         private set
 
     fun signIn(email: String) {
         viewModelScope.launch {
             state = state.copy(isSuccessful = repository.signIn(email))
-        }
-    }
-
-    fun verifyOtp(email: String, otp: String) {
-        viewModelScope.launch {
-            state = state.copy(isEmailVerified = repository.verifyOtp(email, otp))
         }
     }
 }

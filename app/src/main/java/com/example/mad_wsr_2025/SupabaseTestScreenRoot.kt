@@ -2,6 +2,7 @@ package com.example.mad_wsr_2025
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Button
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil3.compose.AsyncImage
 
 @Composable
 fun SupabaseTestScreenRoot(
@@ -54,6 +56,14 @@ fun SupabaseTestScreen(
         }
         items(state.products) { customer ->
             Text(customer.name)
+//            LazyRow {
+//                items(customer.images) {
+//                    AsyncImage(
+//                        model = it,
+//                        contentDescription = null
+//                    )
+//                }
+//            }
         }
     }
 }

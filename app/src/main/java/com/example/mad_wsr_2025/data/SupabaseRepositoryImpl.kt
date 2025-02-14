@@ -3,7 +3,7 @@ package com.example.mad_wsr_2025.data
 import android.util.Log
 import com.example.mad_wsr_2025.core.data.network.model.CustomerSerializable
 import com.example.mad_wsr_2025.core.data.network.model.ProductInfoSerializable
-import com.example.mad_wsr_2025.core.data.network.toCustomer
+//import com.example.mad_wsr_2025.core.data.network.toCustomer
 import com.example.mad_wsr_2025.core.data.network.toProductInfo
 import com.example.mad_wsr_2025.domain.Customer
 import com.example.mad_wsr_2025.domain.ProductInfo
@@ -22,10 +22,11 @@ import kotlinx.coroutines.withContext
 class SupabaseRepositoryImpl(
     private val supabaseClient: SupabaseClient
 ) : SupabaseRepository {
-    override suspend fun getCustomers(): List<Customer> = withContext(Dispatchers.IO) {
-        supabaseClient.from(CUSTOMER_TABLE).select().decodeList<CustomerSerializable>()
-            .map { it.toCustomer() }
-    }
+    override suspend fun getCustomers(): List<Customer> = emptyList()
+//        withContext(Dispatchers.IO) {
+//        supabaseClient.from(CUSTOMER_TABLE).select().decodeList<CustomerSerializable>()
+//            .map { it.toCustomer() }
+//    }
 
     override suspend fun addCustomer(name: String) {
         withContext(Dispatchers.IO) {
@@ -66,6 +67,15 @@ class SupabaseRepositoryImpl(
             return false
         }
     }
+
+
+    override suspend fun getProductsInfo(count: Long?): List<ProductInfo> =
+        withContext(Dispatchers.IO) {
+            supabaseClient.from(PRODUCT_TABLE).select {
+                if (count !== null) limit(count = count)
+            }.decodeList<ProductInfoSerializable>().map { it.toProductInfo() }
+
+        }
 
     private companion object {
         const val CUSTOMER_TABLE = "Customer"
